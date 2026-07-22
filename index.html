@@ -3,115 +3,107 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Prototype web giao bài tập Toán tự động cho gia sư 1 kèm 1">
+  <meta name="description" content="TutorFlow AI - giao bài tập Toán tự động cho gia sư 1 kèm 1">
   <title>TutorFlow AI</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="shell">
+  <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <div class="brand"><span>∑</span><div><b>TutorFlow</b><small>AI Homework</small></div></div>
       <nav>
-        <button class="nav active" data-view="dashboard">⌂ <span>Tổng quan</span></button>
+        <button class="nav active" data-view="home">⌂ <span>Bắt đầu</span></button>
         <button class="nav" data-view="students">◎ <span>Học sinh</span></button>
         <button class="nav" data-view="documents">▤ <span>Tài liệu</span></button>
-        <button class="nav" data-view="generator">✦ <span>Tạo bài tập</span></button>
-        <button class="nav" data-view="review">✓ <span>Duyệt bài</span></button>
-        <button class="nav" data-view="student">▶ <span>Chế độ học sinh</span></button>
-        <button class="nav" data-view="reports">↗ <span>Báo cáo</span></button>
+        <button class="nav" data-view="create">✦ <span>Tạo bài tập</span></button>
+        <button class="nav" data-view="assignments">✓ <span>Bài đã giao</span></button>
+        <button class="nav" data-view="reports">↗ <span>Kết quả</span></button>
       </nav>
-      <div class="next-lesson"><small>BUỔI HỌC TIẾP THEO</small><b>Minh Anh · Toán 8</b><span>19:00 · Thứ Bảy</span><button data-view="reports">Xem nội dung cần ôn →</button></div>
-      <div class="profile"><i>CN</i><div><b>Cao Nguyên</b><small>Gia sư Toán</small></div></div>
+      <div class="sidebar-note"><b>Workflow tối ưu</b><span>Thiết lập một lần, sau đó chỉ cần chọn nội dung và giao bài.</span></div>
     </aside>
 
     <main>
       <header class="topbar">
-        <button id="menu">☰</button>
-        <div><small id="today"></small><h1 id="pageTitle">Tổng quan</h1></div>
-        <button class="primary" data-view="generator">✦ Tạo bài tập</button>
+        <button class="menu" id="menu" aria-label="Mở menu">☰</button>
+        <div><small id="today"></small><h1 id="pageTitle">Bắt đầu</h1></div>
+        <button class="primary" data-view="create">✦ Tạo bài tập</button>
       </header>
 
-      <section class="view active" id="dashboard">
-        <article class="hero">
-          <div><span class="chip light">Gia sư 1 kèm 1</span><h2>Chào Nguyên, hôm nay bạn cần xử lý 2 việc.</h2><p>Minh Anh đã nộp bài. Tài liệu Toán 8 đã sẵn sàng để tạo bài tập mới.</p><div class="actions"><button class="white" data-view="reports">Xem bài vừa nộp</button><button class="ghost" data-view="generator">Tạo bài buổi sau</button></div></div>
-          <div class="ai-orbit"><span>x² − 9</span><span>a² − b²</span><span>2x + 5</span><b>AI</b></div>
+      <section class="view active" id="home">
+        <article class="welcome">
+          <div>
+            <span class="eyebrow">THIẾT LẬP LẦN ĐẦU</span>
+            <h2>Chuẩn bị hệ thống trong 4 bước</h2>
+            <p>Sau khi hoàn tất, mỗi lần giao bài bạn chỉ cần chọn học sinh, chọn nội dung đã học và duyệt bản nháp AI.</p>
+          </div>
+          <div class="flow-visual"><span>1</span><i></i><span>2</span><i></i><span>3</span><i></i><span>4</span></div>
         </article>
-        <div class="stats">
-          <article><i class="purple">✓</i><div><small>BÀI CHỜ XEM</small><b>01</b><span>Minh Anh vừa nộp</span></div></article>
-          <article><i class="blue">▤</i><div><small>TÀI LIỆU SẴN SÀNG</small><b>03</b><span>1.248 trang đã phân tích</span></div></article>
-          <article><i class="orange">△</i><div><small>LỖI CẦN ÔN</small><b>04</b><span>2 lỗi lặp lại tuần này</span></div></article>
-          <article><i class="green">↗</i><div><small>TIẾN ĐỘ GẦN ĐÂY</small><b>+12%</b><span>So với 4 bài trước</span></div></article>
+
+        <div class="setup-grid">
+          <button class="setup-card" data-view="students"><span>01</span><i>◎</i><div><b>Thêm học sinh</b><small>Tạo không gian học tập riêng và lưu mục tiêu học.</small></div><strong>→</strong></button>
+          <button class="setup-card" data-view="documents"><span>02</span><i>⇧</i><div><b>Tải tài liệu cả năm</b><small>PDF hoặc Word dùng làm nguồn kiến thức tham chiếu.</small></div><strong>→</strong></button>
+          <button class="setup-card" data-view="documents"><span>03</span><i>▤</i><div><b>Duyệt cấu trúc AI</b><small>Kiểm tra chương, bài, kỹ năng và giới hạn kiến thức.</small></div><strong>→</strong></button>
+          <button class="setup-card" data-view="create"><span>04</span><i>✦</i><div><b>Tạo bài đầu tiên</b><small>Chọn nội dung, AI tạo câu mới, bạn duyệt rồi giao.</small></div><strong>→</strong></button>
         </div>
-        <div class="grid two-one">
-          <article class="panel">
-            <div class="panel-head"><div><small>HỌC SINH ĐANG HỌC</small><h3>Nguyễn Minh Anh</h3></div><button class="link" data-view="students">Mở hồ sơ →</button></div>
-            <div class="student-row"><i>MA</i><div><div class="spread"><b>Toán lớp 8</b><span class="status done">Đã nộp bài</span></div><p>Chủ đề: Phân tích đa thức thành nhân tử</p><div class="progress"><span style="width:78%"></span></div></div></div>
-            <div class="metrics"><div><small>Đúng lần đầu</small><b>7/10</b></div><div><small>Dùng gợi ý</small><b>2 câu</b></div><div><small>Thời gian</small><b>26 phút</b></div><div><small>Cần chữa</small><b>3 câu</b></div></div>
-          </article>
-          <article class="panel"><div class="panel-head"><div><small>HOẠT ĐỘNG</small><h3>Gần đây</h3></div></div><div class="timeline"><p><i class="purple"></i><span><b>Minh Anh đã nộp bài</b><small>10 câu · 7,8 điểm · 12 phút trước</small></span></p><p><i class="blue"></i><span><b>AI đã phân tích tài liệu</b><small>Toán 8 · 12 chương · Hôm qua</small></span></p><p><i class="green"></i><span><b>Bài ôn tập đã hoàn thành</b><small>Hằng đẳng thức · 3 ngày trước</small></span></p></div></article>
-        </div>
+
+        <article class="panel workflow-panel">
+          <div class="panel-title"><div><span class="eyebrow">LUỒNG SỬ DỤNG HẰNG NGÀY</span><h3>Ít bước, không phải thiết lập lại</h3></div></div>
+          <div class="workflow-row">
+            <div><span>1</span><b>Chọn học sinh</b><small>Hệ thống tự nạp trình độ và lỗi sai.</small></div>
+            <i>→</i><div><span>2</span><b>Chọn bài vừa học</b><small>Dùng cấu trúc đã phân tích từ tài liệu.</small></div>
+            <i>→</i><div><span>3</span><b>Duyệt bản nháp</b><small>Sửa, đổi hoặc tạo lại từng câu.</small></div>
+            <i>→</i><div><span>4</span><b>Giao bài</b><small>Đặt hạn nộp và quyền dùng gợi ý.</small></div>
+          </div>
+        </article>
       </section>
 
       <section class="view" id="students">
-        <div class="intro"><div><small>KHÔNG GIAN 1 KÈM 1</small><h2>Hồ sơ học sinh</h2><p>Mỗi học sinh có một lộ trình, sổ lỗi sai và lịch sử bài tập riêng.</p></div><button class="secondary">＋ Thêm học sinh</button></div>
-        <div class="grid profile-grid">
-          <article class="panel profile-card"><div class="cover"></div><i>MA</i><h3>Nguyễn Minh Anh</h3><p>Toán lớp 8 · Học thứ Ba và thứ Bảy</p><div class="tags"><span>Mục tiêu 8+</span><span>Đang tiến bộ</span></div><button class="primary full" data-view="generator">Tạo bài cho Minh Anh</button></article>
-          <div class="stack">
-            <article class="panel"><div class="panel-head"><div><small>KIẾN THỨC</small><h3>Bản đồ tiến độ</h3></div><span class="chip">Học kỳ I</span></div><div class="skills"><div><label><b>Nhân đa thức</b><small>Đã thành thạo</small></label><div class="progress"><span style="width:92%"></span></div><b>92%</b></div><div><label><b>Hằng đẳng thức</b><small>Đang luyện</small></label><div class="progress"><span style="width:74%"></span></div><b>74%</b></div><div><label><b>Phân tích đa thức</b><small>Cần ôn thêm</small></label><div class="progress warn"><span style="width:58%"></span></div><b>58%</b></div><div><label><b>Phân thức đại số</b><small>Chưa học</small></label><div class="progress muted"><span style="width:12%"></span></div><b>12%</b></div></div></article>
-            <article class="panel"><div class="panel-head"><div><small>SỔ LỖI SAI</small><h3>Lỗi cần ưu tiên</h3></div><button class="link" data-view="reports">Xem chi tiết →</button></div><div class="errors"><div><b>4×</b><strong>Thiếu dấu ngoặc</strong><small>Lặp lại ở 3 bài gần nhất</small></div><div><b>3×</b><strong>Nhận diện sai dạng</strong><small>Hiệu hai bình phương</small></div><div><b>2×</b><strong>Sai dấu</strong><small>Khi nhóm các hạng tử</small></div></div></article>
-          </div>
-        </div>
+        <div class="section-head"><div><span class="eyebrow">HỌC SINH 1 KÈM 1</span><h2>Hồ sơ học sinh</h2><p>Mỗi học sinh có lộ trình, bài tập và sổ lỗi sai riêng.</p></div><button class="primary" id="addStudent">＋ Thêm học sinh</button></div>
+        <article class="empty-state" id="studentEmpty"><i>◎</i><h3>Chưa có học sinh</h3><p>Thêm học sinh đầu tiên để bắt đầu cá nhân hóa bài tập và theo dõi tiến độ.</p><button class="secondary" id="addStudentEmpty">Thêm học sinh</button></article>
+        <form class="panel form hidden" id="studentForm">
+          <div class="form-grid"><label>Họ và tên<input placeholder="Nhập tên học sinh" required></label><label>Khối lớp<select><option value="">Chọn khối lớp</option><option>Lớp 6</option><option>Lớp 7</option><option>Lớp 8</option><option>Lớp 9</option><option>Lớp 10</option><option>Lớp 11</option><option>Lớp 12</option></select></label><label>Mục tiêu học tập<input placeholder="Ví dụ: củng cố kiến thức, ôn thi"></label><label>Lịch học<input placeholder="Ví dụ: Thứ Ba và Thứ Bảy"></label></div>
+          <div class="form-actions"><button type="button" class="secondary" id="cancelStudent">Hủy</button><button class="primary" type="submit">Lưu học sinh</button></div>
+        </form>
       </section>
 
       <section class="view" id="documents">
-        <div class="intro"><div><small>THƯ VIỆN KIẾN THỨC</small><h2>Tài liệu cả năm</h2><p>AI chuyển giáo trình thành chương, bài, kỹ năng và dạng toán để tạo nội dung mới.</p></div><button class="primary" id="uploadBtn">⇧ Tải tài liệu</button><input id="fileInput" type="file" accept=".pdf,.doc,.docx" hidden></div>
-        <article class="dropzone" id="dropzone"><i>⇧</i><h3>Kéo thả PDF hoặc Word vào đây</h3><p>Hệ thống sẽ nhận diện mục lục, công thức, ví dụ và bài tập.</p><button class="secondary" id="chooseFile">Chọn file từ máy</button></article>
-        <div class="docs">
-          <article class="doc featured"><div class="book"><small>TOÁN</small><b>8</b><span>Cả năm</span></div><div><div class="spread"><div><h3>Giáo trình Toán 8</h3><p>PDF · 486 trang</p></div><span class="status done">Sẵn sàng</span></div><div class="tags"><span>12 chương</span><span>64 bài</span><span>128 dạng toán</span></div><div class="progress"><span style="width:100%"></span></div><div class="actions"><button class="secondary" id="showStructure">Xem cấu trúc</button><button class="primary" data-view="generator">Tạo bài</button></div></div></article>
-          <article class="doc compact"><i>PDF</i><div><h3>Chuyên đề Đại số 8</h3><p>184 trang · 42 dạng</p><span class="status done">Sẵn sàng</span></div></article>
-          <article class="doc compact"><i class="word">DOC</i><div><h3>Bài tập ôn thi HKI</h3><p>72 trang · 18 dạng</p><span class="status pending">Đang phân tích 68%</span></div></article>
+        <div class="section-head"><div><span class="eyebrow">NGUỒN KIẾN THỨC</span><h2>Tài liệu học cả năm</h2><p>AI chỉ trích xuất kiến thức, dạng toán và phương pháp; không sao chép nguyên bài.</p></div><button class="primary" id="uploadBtn">⇧ Tải tài liệu</button></div>
+        <input id="fileInput" type="file" accept=".pdf,.doc,.docx" hidden>
+        <article class="dropzone" id="dropzone"><i>⇧</i><h3>Kéo thả PDF hoặc Word vào đây</h3><p>Hệ thống sẽ phân tích mục lục, công thức, ví dụ, dạng toán và giới hạn kiến thức.</p><button class="secondary" id="chooseFile">Chọn file từ máy</button></article>
+        <article class="panel process-card hidden" id="processCard"><div class="spread"><div><span class="eyebrow">ĐANG XỬ LÝ</span><h3 id="fileName">Tài liệu</h3></div><b id="processPercent">0%</b></div><div class="progress"><span id="processBar"></span></div><p id="processText">Đang chuẩn bị tài liệu…</p></article>
+        <article class="panel hidden" id="structureCard"><div class="panel-title"><div><span class="eyebrow">CẦN DUYỆT</span><h3>Cấu trúc kiến thức AI đề xuất</h3></div><button class="secondary" id="approveStructure">Duyệt cấu trúc</button></div><div class="structure-empty"><i>▤</i><p>Cấu trúc chương và bài sẽ xuất hiện tại đây sau khi tài liệu được phân tích.</p></div></article>
+      </section>
+
+      <section class="view" id="create">
+        <div class="section-head"><div><span class="eyebrow">WORKFLOW TẠO BÀI</span><h2>Tạo bài tập mới</h2><p>Chỉ giữ lại các lựa chọn ảnh hưởng trực tiếp đến chất lượng bài tập.</p></div></div>
+        <div class="steps"><span class="active">1 Thiết lập</span><span>2 AI tạo bài</span><span>3 Duyệt & giao</span></div>
+        <div class="create-layout">
+          <form class="panel form" id="createForm">
+            <div class="form-grid two"><label>Học sinh<select required><option value="">Chọn học sinh</option></select><small>Tự động dùng trình độ và lỗi sai gần đây.</small></label><label>Nội dung vừa học<select required><option value="">Chọn từ tài liệu đã duyệt</option></select><small>Chỉ hiển thị nội dung được phép sử dụng.</small></label></div>
+            <div class="form-grid three"><label>Số câu<input type="number" min="3" max="30" value="10"></label><label>Thời gian<input type="number" min="5" max="120" value="25"><small>Phút</small></label><label>Hạn nộp<input type="datetime-local"></label></div>
+            <fieldset><legend>Cấu trúc bài</legend><div class="choice-grid"><label><input type="checkbox" checked><span><b>Cùng kỹ năng</b><small>Thay cấu trúc và dữ kiện.</small></span></label><label><input type="checkbox" checked><span><b>Khác cách hỏi</b><small>Tìm lỗi, điền bước, bài thực tế.</small></span></label><label><input type="checkbox"><span><b>Theo lỗi sai</b><small>Ưu tiên phần học sinh hay nhầm.</small></span></label></div></fieldset>
+            <fieldset><legend>Quy tắc bắt buộc</legend><div class="rule-list"><label><input type="checkbox" checked> Không sao chép hoặc chỉ thay số từ tài liệu</label><label><input type="checkbox" checked> Không sử dụng kiến thức chưa học</label><label><input type="checkbox" checked> Tự kiểm tra đáp án trước khi hiển thị</label></div></fieldset>
+            <button class="primary wide" type="submit">✦ Tạo bản nháp bằng AI</button>
+          </form>
+          <aside class="panel summary-card"><span class="eyebrow">AI SẼ TỰ ĐỘNG</span><ul><li>Đọc hồ sơ học sinh</li><li>Chọn dạng toán phù hợp</li><li>Tạo câu mới và lời giải</li><li>Kiểm tra đáp án</li><li>So sánh độ trùng lặp</li></ul><div class="note">Bạn chỉ cần duyệt những câu AI đã tạo, không phải nhập prompt dài.</div></aside>
         </div>
-        <article class="panel structure" id="structure"><div class="panel-head"><div><small>CẤU TRÚC AI ĐỀ XUẤT</small><h3>Giáo trình Toán 8</h3></div><button id="closeStructure">×</button></div><details open><summary><b>01</b><span><strong>Đa thức</strong><small>8 bài · 24 dạng toán</small></span></summary><div><button>Đơn thức và đa thức <span>5 dạng</span></button><button>Nhân đa thức <span>6 dạng</span></button><button>Hằng đẳng thức <span>7 dạng</span></button><button class="selected">Phân tích đa thức thành nhân tử <span>6 dạng</span></button></div></details><details><summary><b>02</b><span><strong>Phân thức đại số</strong><small>7 bài · 21 dạng toán</small></span></summary></details><details><summary><b>03</b><span><strong>Phương trình</strong><small>6 bài · 18 dạng toán</small></span></summary></details></article>
+        <article class="panel hidden" id="draftPanel"><div class="panel-title"><div><span class="eyebrow">BẢN NHÁP</span><h3>Chưa có câu hỏi</h3></div></div><div class="empty-inline"><i>✦</i><p>Câu hỏi do AI tạo sẽ xuất hiện ở đây để bạn duyệt trước khi giao.</p></div></article>
       </section>
 
-      <section class="view" id="generator">
-        <div class="intro compact"><div><small>AI GENERATOR</small><h2>Tạo bài tập mới</h2><p>Thiết lập phạm vi và cách biến đổi để tạo bài mới, không sao chép tài liệu.</p></div><div class="steps"><span class="active">1 Thiết lập</span><span>2 AI tạo bài</span><span>3 Duyệt</span><span>4 Giao bài</span></div></div>
-        <div class="grid generator-grid">
-          <article class="panel form-card">
-            <label>Học sinh<button class="select"><i>MA</i><span><b>Nguyễn Minh Anh</b><small>Toán lớp 8</small></span><strong>⌄</strong></button></label>
-            <label>Nguồn kiến thức<button class="select"><i>8</i><span><b>Phân tích đa thức thành nhân tử</b><small>Giáo trình Toán 8 · Chương 1</small></span><strong>⌄</strong></button></label>
-            <div class="form-row"><label>Số lượng câu<div class="stepper"><button id="minus">−</button><input id="count" value="10" readonly><button id="plus">＋</button></div></label><label>Thời gian dự kiến<select><option>25 phút</option><option>20 phút</option><option>30 phút</option></select></label></div>
-            <label>Phân bổ độ khó<div class="difficulty"><span>Cơ bản <input type="range" value="40"><b>40%</b></span><span>Trung bình <input type="range" value="40"><b>40%</b></span><span>Vận dụng <input type="range" value="20"><b>20%</b></span></div></label>
-            <label>Cách tạo câu hỏi<div class="options"><button class="selected">≈<b>Cùng dạng</b><small>Đổi cấu trúc</small></button><button class="selected">↻<b>Khác cách hỏi</b><small>Tìm lỗi, điền bước</small></button><button class="selected">△<b>Theo lỗi sai</b><small>Ưu tiên lỗi gần đây</small></button><button>＋<b>Bài tổng hợp</b><small>Kết hợp kiến thức</small></button></div></label>
-            <label>Giới hạn nội dung<div class="tags"><span>Không dùng phân thức</span><span>Không sao chép câu gốc</span><span>Nghiệm nguyên</span></div></label>
-            <div class="switches"><label><span><b>Cho phép gợi ý</b><small>Lưu số lần sử dụng</small></span><input type="checkbox" checked></label><label><span><b>Bắt buộc sửa câu sai</b><small>Thử lại trước khi xem lời giải</small></span><input type="checkbox" checked></label></div>
-            <button class="generate" id="generate"><i>✦</i><span><b>Tạo 10 câu bằng AI</b><small>AI sẽ kiểm tra đáp án và độ trùng lặp</small></span><strong>→</strong></button>
-          </article>
-          <aside class="panel context"><div class="panel-head"><div><small>AI SẼ SỬ DỤNG</small><h3>Ngữ cảnh tạo bài</h3></div></div><section><small>KIẾN THỨC TRỌNG TÂM</small><b>Phân tích đa thức thành nhân tử</b><ul><li>Đặt nhân tử chung</li><li>Dùng hằng đẳng thức</li><li>Nhóm các hạng tử</li></ul></section><section><small>LỖI GẦN ĐÂY</small><p><b>4×</b> Thiếu dấu ngoặc</p><p><b>3×</b> Nhận diện sai hiệu hai bình phương</p></section><section><small>KIẾN THỨC ĐÃ HỌC</small><div class="tags"><span>Nhân đa thức</span><span>Hằng đẳng thức</span></div></section><div class="notice">✓ AI sẽ kiểm tra tính chính xác, độ khó và độ trùng lặp trước khi tạo bản nháp.</div></aside>
-        </div>
-      </section>
-
-      <section class="view" id="review">
-        <div class="intro compact"><div><small>BẢN NHÁP AI</small><h2>Duyệt bài tập</h2><p>Kiểm tra câu hỏi, đáp án và độ mới trước khi giao.</p></div><div class="actions"><button class="secondary" id="regen">↻ Tạo lại</button><button class="primary" id="assign">Duyệt và giao bài</button></div></div>
-        <div class="grid review-grid"><div id="questions"></div><aside class="panel summary"><small>TÓM TẮT BÀI</small><h3>Phân tích đa thức</h3><p><span>Số câu</span><b>10</b></p><p><span>Thời gian</span><b>25 phút</b></p><p><span>Độ mới trung bình</span><b class="green-text">88%</b></p><p><span>Dựa trên lỗi sai</span><b>2 câu</b></p><label>Hạn hoàn thành<input type="datetime-local" value="2026-07-25T18:00"></label><label>Hiển thị kết quả<select><option>Sau khi nộp</option><option>Sau khi gia sư duyệt</option></select></label><div class="notice">✓ 10/10 câu đã vượt qua kiểm tra tính chính xác và độ trùng lặp.</div></aside></div>
-      </section>
-
-      <section class="view" id="student">
-        <div class="student-bar"><span><small>CHẾ ĐỘ HỌC SINH</small><b>Phân tích đa thức thành nhân tử</b></span><button class="secondary" data-view="review">Thoát chế độ xem</button></div>
-        <article class="workspace"><header><div class="brand small"><span>∑</span><b>TutorFlow</b></div><div class="question-progress"><small>Câu <b id="qNo">1</b>/5</small><div class="progress"><span id="qProgress" style="width:20%"></span></div></div><b id="timer">24:59</b></header><main class="exercise"><div class="tags"><span>Cơ bản</span><span>Đặt nhân tử chung</span></div><h3>Phân tích đa thức sau thành nhân tử:</h3><div class="math" id="math">6x² + 9x</div><label>Bài làm của em<input id="answer" placeholder="Ví dụ: 3x(2x + 3)"><small>Hệ thống chấp nhận các biểu thức tương đương.</small></label><div class="hint" id="hint"><b>✦ Gợi ý cấp <span id="hintLevel">1</span></b><p id="hintText"></p></div><div class="actions"><button class="secondary" id="hintBtn">✦ Xin gợi ý</button><button class="primary" id="check">Kiểm tra đáp án</button></div><div class="feedback" id="feedback"></div></main><footer id="dots"></footer></article>
+      <section class="view" id="assignments">
+        <div class="section-head"><div><span class="eyebrow">BÀI TẬP</span><h2>Bài đã giao</h2><p>Theo dõi trạng thái làm bài mà không cần dashboard lớp học phức tạp.</p></div></div>
+        <article class="empty-state"><i>✓</i><h3>Chưa có bài tập nào</h3><p>Sau khi duyệt bản nháp, bài được giao sẽ xuất hiện tại đây.</p><button class="secondary" data-view="create">Tạo bài tập</button></article>
       </section>
 
       <section class="view" id="reports">
-        <div class="intro"><div><small>KẾT QUẢ MỚI NHẤT</small><h2>Báo cáo của Minh Anh</h2><p>Bài “Phân tích đa thức thành nhân tử” · Nộp lúc 13:18 hôm nay.</p></div><button class="primary" data-view="generator">✦ Tạo bài ôn tập</button></div>
-        <article class="score-card"><div class="ring"><span><b>7.8</b><small>/10</small></span></div><div><span class="chip light">Đã hoàn thành</span><h3>Hiểu phương pháp cơ bản, cần ôn nhận diện dạng và dấu ngoặc.</h3><div class="report-metrics"><p><small>Đúng lần đầu</small><b>7 câu</b></p><p><small>Đúng sau sửa</small><b>2 câu</b></p><p><small>Chưa làm được</small><b>1 câu</b></p><p><small>Dùng gợi ý</small><b>2 lượt</b></p></div></div></article>
-        <div class="grid two-one report-grid"><article class="panel"><div class="panel-head"><div><small>THEO KỸ NĂNG</small><h3>Mức độ hoàn thành</h3></div></div><div class="skill-report"><label>Đặt nhân tử chung <b>92%</b><div class="progress"><span style="width:92%"></span></div></label><label>Dùng hằng đẳng thức <b>68%</b><div class="progress warn"><span style="width:68%"></span></div></label><label>Nhóm hạng tử <b>74%</b><div class="progress"><span style="width:74%"></span></div></label><label>Nhận diện phương pháp <b>56%</b><div class="progress danger"><span style="width:56%"></span></div></label></div></article><article class="panel"><div class="panel-head"><div><small>THỜI GIAN</small><h3>26 phút</h3></div></div><div class="bars"><i style="height:30%"></i><i style="height:42%"></i><i style="height:36%"></i><i style="height:78%"></i><i style="height:48%"></i><i style="height:54%"></i><i style="height:86%"></i><i style="height:45%"></i><i style="height:58%"></i><i style="height:70%"></i></div></article></div>
-        <div class="grid equal"><article class="panel"><div class="panel-head"><div><small>LỖI SAI</small><h3>3 lỗi được phát hiện</h3></div></div><div class="report-errors"><p><span class="bad">Lặp lại</span><b>Thiếu dấu ngoặc</b><small>Câu 4 và 7 · Xuất hiện 4 lần</small></p><p><span class="medium">Cần ôn</span><b>Nhận diện sai hiệu hai bình phương</b><small>Câu 6 · Chọn sai phương pháp</small></p><p><span class="low">Tính toán</span><b>Sai dấu khi nhóm hạng tử</b><small>Câu 9 · Đã sửa đúng lần hai</small></p></div></article><article class="panel recommendations"><div class="panel-head"><div><small>ĐỀ XUẤT BUỔI SAU</small><h3>Nội dung ưu tiên</h3></div></div><ol><li><b>1</b><span><strong>Ôn dấu ngoặc khi đặt nhân tử chung</strong><small>5 phút · 2 ví dụ mẫu</small></span></li><li><b>2</b><span><strong>Phân biệt các phương pháp phân tích</strong><small>10 phút · sơ đồ nhận diện</small></span></li><li><b>3</b><span><strong>Luyện 5 câu biến thể</strong><small>Cơ bản đến trung bình</small></span></li></ol><button class="generate" data-view="generator"><i>✦</i><span><b>Tạo bài ôn theo đề xuất</b><small>AI đã chuẩn bị sẵn cấu hình</small></span><strong>→</strong></button></article></div>
+        <div class="section-head"><div><span class="eyebrow">KẾT QUẢ CÁ NHÂN</span><h2>Kết quả và lỗi sai</h2><p>Chỉ hiển thị dữ liệu thật sau khi học sinh hoàn thành bài.</p></div></div>
+        <article class="empty-state"><i>↗</i><h3>Chưa có kết quả</h3><p>Điểm số, thời gian, gợi ý đã dùng và lỗi lặp lại sẽ được tổng hợp tại đây.</p></article>
       </section>
     </main>
   </div>
 
-  <div class="toast" id="toast"><i>✓</i><span><b id="toastTitle">Hoàn tất</b><small id="toastText"></small></span></div>
-  <div class="loading" id="loading"><div><i>AI</i><h3>Đang tạo bài tập mới</h3><p id="loadingText">Đang đọc mục tiêu kiến thức…</p><span><b id="loadingBar"></b></span></div></div>
+  <div class="modal hidden" id="studentModal"><div class="modal-card"><button class="close" id="closeModal">×</button><span class="eyebrow">THÊM HỌC SINH</span><h3>Tạo hồ sơ học tập</h3><p>Bạn sẽ được chuyển đến biểu mẫu tạo học sinh.</p><button class="primary wide" id="continueStudent">Tiếp tục</button></div></div>
+  <div class="toast" id="toast"><b id="toastTitle"></b><span id="toastText"></span></div>
   <script src="app.js"></script>
 </body>
 </html>
