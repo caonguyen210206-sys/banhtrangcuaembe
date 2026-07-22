@@ -2,20 +2,27 @@
 
 Prototype web giao bài tập Toán tự động dành cho gia sư 1 kèm 1.
 
-## Các luồng đã thiết kế
+## Workflow chính
 
-- Hồ sơ riêng cho từng học sinh.
-- Tải tài liệu PDF hoặc Word của cả năm.
-- AI phân tích tài liệu thành chương, bài, kỹ năng và dạng toán.
-- Thiết lập bài tập theo độ khó, loại câu hỏi và lỗi sai của học sinh.
-- AI tạo nội dung mới dựa trên kiến thức, không sao chép nguyên bài trong tài liệu.
-- Gia sư xem đáp án, độ mới và duyệt trước khi giao.
-- Học sinh làm bài, xin gợi ý và sửa câu sai.
-- Báo cáo kết quả, lỗi lặp lại và đề xuất nội dung buổi học sau.
+1. Thêm hồ sơ học sinh.
+2. Tải tài liệu PDF hoặc Word làm nguồn kiến thức.
+3. Chọn học sinh, tài liệu, chủ đề, số câu và thời hạn.
+4. AI chuẩn bị bản nháp, kiểm tra độ khó và độ trùng lặp.
+5. Gia sư duyệt nội dung trong cùng một quy trình.
+6. Xác nhận và giao bài.
+7. Kết quả chỉ được hiển thị sau khi học sinh nộp bài.
 
-## Trạng thái
+## Nguyên tắc giao diện
 
-Đây là prototype front-end tĩnh. Dữ liệu AI, tài khoản, lưu trữ tài liệu và chấm bài phía máy chủ đang được mô phỏng bằng dữ liệu mẫu.
+- Không có dữ liệu học sinh, tài liệu, điểm số hoặc báo cáo được điền sẵn.
+- Giao diện sử dụng empty state cho tài khoản mới.
+- Dữ liệu được tạo từ thao tác của người dùng và lưu cục bộ bằng `localStorage`.
+- Quy trình tạo, duyệt và giao bài được hợp nhất trong một màn hình bốn bước.
+- AI sử dụng tài liệu làm nguồn kiến thức, không sao chép nguyên câu hỏi.
+
+## Trạng thái prototype
+
+Đây là prototype front-end tĩnh. Chức năng đọc nội dung file, tạo câu hỏi bằng AI, đăng nhập, cơ sở dữ liệu và chấm bài phía máy chủ chưa được kết nối.
 
 ## Chạy cục bộ
 
