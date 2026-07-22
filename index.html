@@ -6,11 +6,16 @@
   <meta name="description" content="Web giao bài tập Toán tự động dành cho gia sư 1 kèm 1">
   <title>TutorFlow AI</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="ai.css">
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
-      <div class="brand"><span class="brand-mark">∑</span><div><strong>TutorFlow</strong><small>AI Homework</small></div></div>
+      <div class="brand">
+        <span class="brand-mark">∑</span>
+        <div><strong>TutorFlow</strong><small>AI Homework</small></div>
+      </div>
+
       <nav class="main-nav" aria-label="Điều hướng chính">
         <button class="nav-item active" data-view="dashboard"><span>⌂</span>Tổng quan</button>
         <button class="nav-item" data-view="students"><span>◎</span>Học sinh</button>
@@ -18,85 +23,213 @@
         <button class="nav-item" data-view="assignment"><span>✦</span>Tạo & giao bài</button>
         <button class="nav-item" data-view="results"><span>↗</span>Kết quả</button>
       </nav>
-      <div class="sidebar-help"><strong>Quy trình chính</strong><span>Thiết lập → Duyệt → Giao bài</span></div>
-      <div class="account-card"><span class="avatar">GS</span><div><strong>Tài khoản gia sư</strong><small>Không gian cá nhân</small></div></div>
+
+      <div class="sidebar-help">
+        <strong>Quy trình</strong>
+        <span>Học sinh → Tài liệu → Duyệt → Giao bài</span>
+      </div>
+
+      <div class="account-card">
+        <span class="avatar">GS</span>
+        <div><strong>Tài khoản gia sư</strong><small>Không gian cá nhân</small></div>
+      </div>
     </aside>
 
     <main class="main-content">
       <header class="topbar">
         <button class="icon-button menu-button" id="menuButton" aria-label="Mở menu">☰</button>
         <div class="page-heading"><small id="today"></small><h1 id="pageTitle">Tổng quan</h1></div>
-        <button class="button primary" data-view="assignment">✦ Tạo bài tập</button>
+        <div class="topbar-actions">
+          <button class="button secondary api-button" id="openApiSettings"><span class="api-dot"></span><span id="apiStatusText">Chưa kết nối AI</span></button>
+          <button class="button primary" data-view="assignment">✦ Tạo bài tập</button>
+        </div>
       </header>
 
       <section class="view active" id="dashboard">
         <div class="welcome-card">
-          <div><span class="eyebrow light">GIA SƯ 1 KÈM 1</span><h2>Tạo bài tập từ giáo trình trong một quy trình duy nhất.</h2><p>Thêm học sinh, tải tài liệu và duyệt bài trước khi giao.</p><button class="button white" data-view="students">Bắt đầu thiết lập</button></div>
-          <div class="workflow-visual" aria-hidden="true"><span>1</span><i></i><span>2</span><i></i><span>3</span></div>
+          <div>
+            <span class="eyebrow light">GIA SƯ 1 KÈM 1</span>
+            <h2>Tạo bài tập mới từ chính tài liệu bạn đang sử dụng.</h2>
+            <p>Thêm học sinh, tải tài liệu, chọn nội dung vừa dạy và kiểm tra bài AI tạo trước khi giao.</p>
+            <button class="button white" data-view="students">Bắt đầu thiết lập</button>
+          </div>
+          <div class="workflow-visual" aria-hidden="true">
+            <span>1</span><i></i><span>2</span><i></i><span>3</span>
+          </div>
         </div>
-        <div class="section-heading"><div><span class="eyebrow">BẮT ĐẦU NHANH</span><h2>Hoàn thành thiết lập ban đầu</h2></div><span class="setup-count" id="setupCount">0/3 hoàn tất</span></div>
+
+        <div class="section-heading">
+          <div><span class="eyebrow">BẮT ĐẦU NHANH</span><h2>Hoàn thành thiết lập ban đầu</h2></div>
+          <span class="setup-count" id="setupCount">0/3 hoàn tất</span>
+        </div>
+
         <div class="setup-grid">
-          <article class="setup-card" id="studentSetupCard"><div class="setup-icon">◎</div><span class="step-label">BƯỚC 1</span><h3>Thêm học sinh</h3><p>Tạo hồ sơ để lưu bài tập, tiến độ và lỗi sai.</p><button class="text-button" data-view="students">Thiết lập học sinh →</button></article>
-          <article class="setup-card" id="documentSetupCard"><div class="setup-icon">▤</div><span class="step-label">BƯỚC 2</span><h3>Tải tài liệu</h3><p>Thêm PDF hoặc Word để AI xây dựng cấu trúc kiến thức.</p><button class="text-button" data-view="documents">Thêm tài liệu →</button></article>
-          <article class="setup-card" id="assignmentSetupCard"><div class="setup-icon">✦</div><span class="step-label">BƯỚC 3</span><h3>Tạo bài tập</h3><p>Thiết lập, duyệt và giao bài trong cùng một màn hình.</p><button class="text-button" data-view="assignment">Mở trình tạo bài →</button></article>
+          <article class="setup-card" id="studentSetupCard">
+            <div class="setup-icon">◎</div><span class="step-label">BƯỚC 1</span><h3>Thêm học sinh</h3>
+            <p>Tạo hồ sơ riêng để lưu bài tập, tiến độ và lỗi sai.</p>
+            <button class="text-button" data-view="students">Thiết lập học sinh →</button>
+          </article>
+          <article class="setup-card" id="documentSetupCard">
+            <div class="setup-icon">▤</div><span class="step-label">BƯỚC 2</span><h3>Tải tài liệu</h3>
+            <p>AI đọc file và tạo cấu trúc chương, bài, kỹ năng.</p>
+            <button class="text-button" data-view="documents">Thêm tài liệu →</button>
+          </article>
+          <article class="setup-card" id="assignmentSetupCard">
+            <div class="setup-icon">✦</div><span class="step-label">BƯỚC 3</span><h3>Tạo bài tập</h3>
+            <p>Thiết lập yêu cầu, duyệt câu hỏi và giao bài.</p>
+            <button class="text-button" data-view="assignment">Mở trình tạo bài →</button>
+          </article>
         </div>
-        <article class="panel recent-panel"><div class="panel-heading"><div><span class="eyebrow">HOẠT ĐỘNG</span><h2>Gần đây</h2></div></div><div class="empty-state compact" id="activityEmpty"><span class="empty-icon">◷</span><h3>Chưa có hoạt động</h3><p>Các thao tác trong hệ thống sẽ xuất hiện tại đây.</p></div><div class="activity-list" id="activityList"></div></article>
+
+        <article class="panel recent-panel">
+          <div class="panel-heading"><div><span class="eyebrow">HOẠT ĐỘNG</span><h2>Gần đây</h2></div></div>
+          <div class="empty-state compact" id="activityEmpty"><span class="empty-icon">◷</span><h3>Chưa có hoạt động</h3><p>Các lần tải tài liệu, tạo bài và giao bài sẽ xuất hiện tại đây.</p></div>
+          <div class="activity-list" id="activityList"></div>
+        </article>
       </section>
 
       <section class="view" id="students">
-        <div class="section-heading page-section-heading"><div><span class="eyebrow">HỒ SƠ 1 KÈM 1</span><h2>Học sinh</h2><p>Mỗi học sinh có lịch sử bài tập và dữ liệu tiến độ riêng.</p></div><button class="button primary" id="openStudentForm">＋ Thêm học sinh</button></div>
-        <div class="empty-state" id="studentsEmpty"><span class="empty-icon">◎</span><h3>Chưa có học sinh</h3><p>Thêm học sinh đầu tiên để bắt đầu giao bài và theo dõi kết quả.</p><button class="button primary" id="emptyAddStudent">Thêm học sinh</button></div>
+        <div class="section-heading page-section-heading">
+          <div><span class="eyebrow">HỒ SƠ 1 KÈM 1</span><h2>Học sinh</h2><p>Mỗi học sinh có lịch sử bài tập và dữ liệu tiến độ riêng.</p></div>
+          <button class="button primary" id="openStudentForm">＋ Thêm học sinh</button>
+        </div>
+        <div class="empty-state" id="studentsEmpty"><span class="empty-icon">◎</span><h3>Chưa có học sinh</h3><p>Thêm học sinh đầu tiên để bắt đầu giao bài.</p><button class="button primary" id="emptyAddStudent">Thêm học sinh</button></div>
         <div class="card-grid" id="studentList"></div>
       </section>
 
       <section class="view" id="documents">
-        <div class="section-heading page-section-heading"><div><span class="eyebrow">NGUỒN KIẾN THỨC</span><h2>Tài liệu</h2><p>Tải giáo trình một lần, sau đó dùng lại khi tạo bài tập.</p></div><button class="button primary" id="topUploadButton">⇧ Tải tài liệu</button></div>
+        <div class="section-heading page-section-heading">
+          <div><span class="eyebrow">NGUỒN KIẾN THỨC</span><h2>Tài liệu</h2><p>File sẽ được gửi đến backend để AI phân tích nội dung thật.</p></div>
+          <button class="button primary" id="topUploadButton">⇧ Tải tài liệu</button>
+        </div>
         <input id="fileInput" type="file" accept=".pdf,.doc,.docx" hidden>
-        <article class="upload-zone" id="uploadZone"><div class="upload-icon">⇧</div><h3>Kéo thả PDF hoặc Word vào đây</h3><p>AI sẽ nhận diện chương, bài, công thức, kỹ năng và dạng toán.</p><button class="button secondary" id="chooseFileButton">Chọn file từ máy</button><small>Định dạng hỗ trợ: PDF, DOC, DOCX</small></article>
+        <article class="upload-zone" id="uploadZone">
+          <div class="upload-icon">⇧</div><h3>Kéo thả PDF hoặc Word vào đây</h3>
+          <p>AI sẽ nhận diện chương, bài, kỹ năng, phương pháp và lỗi thường gặp.</p>
+          <button class="button secondary" id="chooseFileButton">Chọn file từ máy</button><small>PDF, DOC, DOCX · tối đa theo cấu hình backend</small>
+        </article>
         <div class="document-list" id="documentList"></div>
-        <div class="empty-state compact" id="documentsEmpty"><span class="empty-icon">▤</span><h3>Chưa có tài liệu</h3><p>Tài liệu tải lên sẽ xuất hiện tại đây.</p></div>
+        <div class="empty-state compact" id="documentsEmpty"><span class="empty-icon">▤</span><h3>Chưa có tài liệu</h3><p>Tài liệu đã phân tích sẽ xuất hiện tại đây.</p></div>
       </section>
 
       <section class="view" id="assignment">
         <div class="section-heading page-section-heading assignment-heading">
-          <div><span class="eyebrow">QUY TRÌNH TẠO BÀI</span><h2>Tạo & giao bài tập</h2><p>Ba bước liên tục, không cần chuyển qua nhiều trang.</p></div>
-          <div class="stepper-tabs" id="stepperTabs"><button class="active" data-step="1"><b>1</b>Thiết lập</button><button data-step="2"><b>2</b>Duyệt</button><button data-step="3"><b>3</b>Giao bài</button></div>
+          <div><span class="eyebrow">QUY TRÌNH TẠO BÀI</span><h2>Tạo & giao bài tập</h2><p>Thiết lập yêu cầu, kiểm tra câu hỏi AI tạo và giao bài.</p></div>
+          <div class="stepper-tabs" id="stepperTabs">
+            <button class="active" data-step="1"><b>1</b>Thiết lập</button>
+            <button data-step="2"><b>2</b>Duyệt bài</button>
+            <button data-step="3"><b>3</b>Giao bài</button>
+          </div>
         </div>
-        <div class="prerequisite" id="assignmentPrerequisite"><span>!</span><div><strong>Cần hoàn thành thiết lập trước</strong><p>Thêm ít nhất một học sinh và một tài liệu để tạo bài tập.</p></div><div class="prerequisite-actions"><button class="button secondary" data-view="students">Thêm học sinh</button><button class="button primary" data-view="documents">Tải tài liệu</button></div></div>
+
+        <div class="prerequisite" id="assignmentPrerequisite">
+          <span>!</span><div><strong>Cần hoàn thành thiết lập trước</strong><p>Hãy thêm học sinh và tải ít nhất một tài liệu đã được AI phân tích.</p></div>
+          <div class="prerequisite-actions"><button class="button secondary" data-view="students">Thêm học sinh</button><button class="button primary" data-view="documents">Tải tài liệu</button></div>
+        </div>
 
         <div id="assignmentWorkflow" hidden>
           <section class="workflow-step active" data-step-panel="1">
             <div class="assignment-layout">
               <article class="panel form-panel">
-                <div class="form-grid two-columns"><label>Học sinh<select id="studentSelect"></select></label><label>Nguồn tài liệu<select id="documentSelect"></select></label></div>
-                <label>Chủ đề hoặc nội dung vừa dạy<input id="topicInput" placeholder="Nhập chương, bài hoặc kỹ năng"></label>
-                <div class="form-grid three-columns"><label>Số câu<input id="questionCount" type="number" min="3" max="30" value="10"></label><label>Thời gian dự kiến<select id="durationSelect"><option value="15">15 phút</option><option value="20">20 phút</option><option value="25" selected>25 phút</option><option value="30">30 phút</option><option value="45">45 phút</option></select></label><label>Hạn hoàn thành<input id="deadlineInput" type="datetime-local"></label></div>
-                <fieldset><legend>Cách tạo câu hỏi</legend><div class="choice-grid"><label class="choice-card"><input type="checkbox" name="mode" value="Cùng dạng" checked><span><b>≈</b><strong>Cùng dạng</strong><small>Giữ kỹ năng, đổi cấu trúc</small></span></label><label class="choice-card"><input type="checkbox" name="mode" value="Khác cách hỏi" checked><span><b>↻</b><strong>Khác cách hỏi</strong><small>Điền bước, tìm lỗi, tự luận</small></span></label><label class="choice-card"><input type="checkbox" name="mode" value="Theo lỗi sai"><span><b>△</b><strong>Theo lỗi sai</strong><small>Dùng dữ liệu kết quả đã có</small></span></label><label class="choice-card"><input type="checkbox" name="mode" value="Bài tổng hợp"><span><b>＋</b><strong>Bài tổng hợp</strong><small>Kết hợp kiến thức đã học</small></span></label></div></fieldset>
+                <div class="form-grid two-columns">
+                  <label>Học sinh<select id="studentSelect"></select></label>
+                  <label>Nguồn tài liệu<select id="documentSelect"></select></label>
+                </div>
+                <label>Chủ đề hoặc nội dung vừa dạy<input id="topicInput" list="topicSuggestions" placeholder="Nhập chủ đề hoặc chọn gợi ý từ tài liệu"><datalist id="topicSuggestions"></datalist></label>
+                <div class="form-grid three-columns">
+                  <label>Số câu<input id="questionCount" type="number" min="3" max="20" value="10"></label>
+                  <label>Thời gian dự kiến<select id="durationSelect"><option value="15">15 phút</option><option value="20">20 phút</option><option value="25" selected>25 phút</option><option value="30">30 phút</option><option value="45">45 phút</option></select></label>
+                  <label>Hạn hoàn thành<input id="deadlineInput" type="datetime-local"></label>
+                </div>
+                <fieldset>
+                  <legend>Cách tạo câu hỏi</legend>
+                  <div class="choice-grid">
+                    <label class="choice-card"><input type="checkbox" name="mode" value="Cùng dạng" checked><span><b>≈</b><strong>Cùng dạng</strong><small>Giữ kỹ năng, đổi cấu trúc</small></span></label>
+                    <label class="choice-card"><input type="checkbox" name="mode" value="Khác cách hỏi" checked><span><b>↻</b><strong>Khác cách hỏi</strong><small>Thay đổi hình thức kiểm tra</small></span></label>
+                    <label class="choice-card"><input type="checkbox" name="mode" value="Theo lỗi sai"><span><b>△</b><strong>Theo lỗi sai</strong><small>Dùng dữ liệu học tập đã có</small></span></label>
+                    <label class="choice-card"><input type="checkbox" name="mode" value="Bài tổng hợp"><span><b>＋</b><strong>Bài tổng hợp</strong><small>Kết hợp kiến thức đã học</small></span></label>
+                  </div>
+                </fieldset>
                 <label>Yêu cầu bổ sung<textarea id="constraintsInput" rows="3" placeholder="Nhập giới hạn hoặc yêu cầu riêng"></textarea></label>
-                <div class="toggle-list"><label><span><strong>Cho phép gợi ý</strong><small>Lưu số lần học sinh sử dụng</small></span><input id="hintsToggle" type="checkbox" checked></label><label><span><strong>Bắt buộc sửa câu sai</strong><small>Cho thử lại trước khi xem lời giải</small></span><input id="retryToggle" type="checkbox" checked></label></div>
-                <div class="form-footer"><button class="button primary large" id="startGeneration">Tạo bản nháp →</button></div>
+                <div class="toggle-list">
+                  <label><span><strong>Cho phép gợi ý</strong><small>Lưu số lần học sinh sử dụng</small></span><input id="hintsToggle" type="checkbox" checked></label>
+                  <label><span><strong>Bắt buộc sửa câu sai</strong><small>Cho học sinh thử lại trước khi xem lời giải</small></span><input id="retryToggle" type="checkbox" checked></label>
+                </div>
+                <div class="form-footer"><button class="button primary large" id="startGeneration">Tạo bài bằng AI →</button></div>
               </article>
-              <aside class="panel summary-panel"><span class="eyebrow">TÓM TẮT CẤU HÌNH</span><h3>Bài tập mới</h3><dl id="configSummary"><div><dt>Học sinh</dt><dd>Chưa chọn</dd></div><div><dt>Tài liệu</dt><dd>Chưa chọn</dd></div><div><dt>Chủ đề</dt><dd>Chưa nhập</dd></div><div><dt>Số câu</dt><dd>10 câu</dd></div></dl><div class="info-box">AI dùng tài liệu làm nguồn kiến thức và kiểm tra độ trùng lặp trước khi tạo bản nháp.</div></aside>
+              <aside class="panel summary-panel">
+                <span class="eyebrow">TÓM TẮT CẤU HÌNH</span><h3>Bài tập mới</h3>
+                <dl id="configSummary"><div><dt>Học sinh</dt><dd>Chưa chọn</dd></div><div><dt>Tài liệu</dt><dd>Chưa chọn</dd></div><div><dt>Chủ đề</dt><dd>Chưa nhập</dd></div><div><dt>Số câu</dt><dd>10 câu</dd></div></dl>
+                <div class="info-box">AI sử dụng file làm nguồn kiến thức và tạo câu mới theo schema có đáp án, lời giải và nguồn tham chiếu.</div>
+              </aside>
             </div>
           </section>
 
           <section class="workflow-step" data-step-panel="2">
-            <div class="review-toolbar"><div><span class="eyebrow">BẢN NHÁP</span><h3 id="draftTitle">Bài tập mới</h3><p id="generationMessage">Kiểm tra nội dung trước khi giao cho học sinh.</p></div><button class="button secondary" id="regenerateDraft">↻ Tạo lại bản nháp</button></div>
-            <div class="generation-progress"><span id="generationProgress"></span></div>
-            <div class="review-layout"><div class="draft-empty" id="draftEmpty"><span>✦</span><h3>Khu vực duyệt bài</h3><p>Khi kết nối AI backend, câu hỏi, đáp án và nguồn tham chiếu sẽ xuất hiện tại đây.</p></div><aside class="panel review-summary"><span class="eyebrow">KIỂM TRA TRƯỚC KHI GIAO</span><label class="check-row"><input type="checkbox"> Đã xem nội dung câu hỏi</label><label class="check-row"><input type="checkbox"> Đã kiểm tra đáp án và lời giải</label><label class="check-row"><input type="checkbox"> Không có nội dung vượt chương trình</label><button class="button primary large" id="approveDraft">Duyệt bản nháp →</button></aside></div>
+            <div class="review-toolbar">
+              <div><span class="eyebrow">BẢN NHÁP AI</span><h3 id="draftTitle">Bài tập mới</h3><p id="generationMessage">Kiểm tra nội dung trước khi giao.</p></div>
+              <button class="button secondary" id="regenerateDraft">↻ Tạo lại</button>
+            </div>
+            <div class="generation-inline" id="generationInline"><span class="generation-spinner"></span><strong>AI đang đọc tài liệu và tạo bài tập…</strong></div>
+            <div class="review-layout">
+              <div>
+                <div class="draft-empty" id="draftEmpty"><span>✦</span><h3>Chưa có câu hỏi</h3><p>Quay lại bước thiết lập và bấm “Tạo bài bằng AI”.</p></div>
+                <div class="question-list" id="questionList"></div>
+              </div>
+              <aside class="panel review-summary">
+                <span class="eyebrow">KIỂM TRA TRƯỚC KHI GIAO</span>
+                <label class="check-row"><input type="checkbox"> Đã xem nội dung câu hỏi</label>
+                <label class="check-row"><input type="checkbox"> Đã kiểm tra đáp án và lời giải</label>
+                <label class="check-row"><input type="checkbox"> Không có nội dung vượt chương trình</label>
+                <button class="button primary large" id="approveDraft">Duyệt bản nháp →</button>
+              </aside>
+            </div>
           </section>
 
           <section class="workflow-step" data-step-panel="3">
-            <article class="panel publish-panel"><div class="publish-icon">✓</div><span class="eyebrow">BƯỚC CUỐI</span><h3>Kiểm tra thông tin giao bài</h3><div class="publish-summary" id="publishSummary"></div><div class="form-grid two-columns"><label>Hiển thị kết quả<select id="resultVisibility"><option>Ngay sau khi nộp</option><option>Sau khi gia sư duyệt</option></select></label><label>Số lần làm<select id="attemptSelect"><option>1 lần</option><option selected>2 lần</option><option>Không giới hạn</option></select></label></div><button class="button primary large" id="publishAssignment">Giao bài cho học sinh</button></article>
+            <article class="panel publish-panel">
+              <div class="publish-icon">✓</div><span class="eyebrow">BƯỚC CUỐI</span><h3>Kiểm tra thông tin giao bài</h3>
+              <div class="publish-summary" id="publishSummary"></div>
+              <div class="form-grid two-columns">
+                <label>Hiển thị kết quả<select id="resultVisibility"><option>Ngay sau khi nộp</option><option>Sau khi gia sư duyệt</option></select></label>
+                <label>Số lần làm<select id="attemptSelect"><option>1 lần</option><option selected>2 lần</option><option>Không giới hạn</option></select></label>
+              </div>
+              <button class="button primary large" id="publishAssignment">Giao bài cho học sinh</button>
+            </article>
           </section>
         </div>
       </section>
 
-      <section class="view" id="results"><div class="section-heading page-section-heading"><div><span class="eyebrow">THEO DÕI HỌC TẬP</span><h2>Kết quả</h2><p>Kết quả chỉ xuất hiện sau khi học sinh nộp bài.</p></div></div><div class="empty-state" id="resultsEmpty"><span class="empty-icon">↗</span><h3>Chưa có kết quả</h3><p>Điểm số, thời gian, gợi ý và lỗi sai sẽ được tổng hợp tại đây.</p><button class="button primary" data-view="assignment">Tạo bài tập</button></div><div id="resultList" class="result-list"></div></section>
+      <section class="view" id="results">
+        <div class="section-heading page-section-heading"><div><span class="eyebrow">THEO DÕI HỌC TẬP</span><h2>Kết quả</h2><p>Kết quả xuất hiện sau khi học sinh nộp bài.</p></div></div>
+        <div class="empty-state" id="resultsEmpty"><span class="empty-icon">↗</span><h3>Chưa có kết quả</h3><p>Điểm số, thời gian, gợi ý và lỗi sai sẽ được tổng hợp tại đây.</p><button class="button primary" data-view="assignment">Tạo bài tập</button></div>
+        <div id="resultList" class="result-list"></div>
+      </section>
     </main>
   </div>
 
-  <div class="modal" id="studentModal" aria-hidden="true"><div class="modal-backdrop" data-close-modal></div><form class="modal-card" id="studentForm"><div class="modal-heading"><div><span class="eyebrow">HỒ SƠ MỚI</span><h2>Thêm học sinh</h2></div><button type="button" class="icon-button" data-close-modal>×</button></div><label>Họ và tên<input id="studentName" required placeholder="Nhập họ và tên"></label><div class="form-grid two-columns"><label>Lớp<input id="studentGrade" required placeholder="Nhập khối lớp"></label><label>Mục tiêu<input id="studentGoal" placeholder="Nhập mục tiêu học tập"></label></div><label>Ghi chú<textarea id="studentNote" rows="3" placeholder="Nhập thông tin cần lưu ý"></textarea></label><div class="modal-actions"><button type="button" class="button secondary" data-close-modal>Huỷ</button><button type="submit" class="button primary">Lưu học sinh</button></div></form></div>
+  <div class="modal" id="studentModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <form class="modal-card" id="studentForm">
+      <div class="modal-heading"><div><span class="eyebrow">HỒ SƠ MỚI</span><h2>Thêm học sinh</h2></div><button type="button" class="icon-button" data-close-modal>×</button></div>
+      <label>Họ và tên<input id="studentName" required placeholder="Nhập tên học sinh"></label>
+      <div class="form-grid two-columns"><label>Lớp<input id="studentGrade" required placeholder="Nhập lớp"></label><label>Mục tiêu<input id="studentGoal" placeholder="Nhập mục tiêu"></label></div>
+      <label>Ghi chú<textarea id="studentNote" rows="3" placeholder="Nhập thông tin cần lưu ý"></textarea></label>
+      <div class="modal-actions"><button type="button" class="button secondary" data-close-modal>Huỷ</button><button type="submit" class="button primary">Lưu học sinh</button></div>
+    </form>
+  </div>
+
+  <div class="modal" id="apiModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-api></div>
+    <form class="modal-card wide" id="apiForm">
+      <div class="modal-heading"><div><span class="eyebrow">KẾT NỐI BACKEND</span><h2>Kết nối AI</h2></div><button type="button" class="icon-button" data-close-api>×</button></div>
+      <label>URL backend<input id="apiUrlInput" type="url" placeholder="https://ten-dich-vu.onrender.com"></label>
+      <p class="api-help">API key được lưu ở biến môi trường <code>OPENAI_API_KEY</code> trên backend, không nhập vào website này.</p>
+      <div class="connection-result" id="connectionResult"></div>
+      <div class="modal-actions"><button type="button" class="button secondary" id="testApiButton">Kiểm tra kết nối</button><button type="submit" class="button primary">Lưu kết nối</button></div>
+    </form>
+  </div>
+
   <div class="toast" id="toast"><span>✓</span><div><strong id="toastTitle">Hoàn tất</strong><small id="toastMessage"></small></div></div>
   <script src="app.js"></script>
 </body>
